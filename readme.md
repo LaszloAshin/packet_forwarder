@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/LaszloAshin/packet_forwarder.svg?style=svg)](https://circleci.com/gh/LaszloAshin/packet_forwarder)
+
 The Things Network packet forwarder
 ====================================
 
