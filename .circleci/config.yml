@@ -1,0 +1,13 @@
+# vim: set expandtab ts=2:
+version: 2.1
+jobs:
+  build:
+    docker:
+    - image: dockcross/linux-armv6:20190619-7a7b5a3
+    steps:
+    - checkout
+    - run:
+        name: Build
+        command: make
+    - store_artifacts:
+        path: poly_pkt_fwd/poly_pkt_fwd
