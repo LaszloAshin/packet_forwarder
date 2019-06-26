@@ -1,6 +1,6 @@
 ### Environment constants 
 
-LGW_PATH ?= ../../lora_gateway/libloragw
+LGW_PATH ?= ../libloragw
 ARCH ?=
 CROSS_COMPILE ?=
 export
@@ -8,6 +8,7 @@ export
 ### general build targets
 
 all:
+	$(MAKE) all -e -C libloragw
 	$(MAKE) all -e -C basic_pkt_fwd
 	$(MAKE) all -e -C gps_pkt_fwd
 	$(MAKE) all -e -C beacon_pkt_fwd
@@ -24,5 +25,6 @@ clean:
 	$(MAKE) clean -e -C util_ack
 	$(MAKE) clean -e -C util_sink
 	$(MAKE) clean -e -C util_tx_test
+	$(MAKE) clean -e -C libloragw
 
 ### EOF
