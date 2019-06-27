@@ -4,7 +4,7 @@ APP_NAME := poly_pkt_fwd
 
 ### Environment constants 
 
-LGW_PATH ?= ../../lora_gateway/libloragw
+LGW_PATH ?= ../libloragw
 ARCH ?=
 CROSS_COMPILE ?=
 
