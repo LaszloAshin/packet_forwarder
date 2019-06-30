@@ -58,12 +58,16 @@ Maintainer: Sylvain Miermont
 /* -------------------------------------------------------------------------- */
 /* --- PUBLIC FUNCTIONS DEFINITION ------------------------------------------ */
 
+static int debugfd = -1;
+
 /* SPI initialization and configuration */
 int lgw_spi_open(void **spi_target_ptr) {
 	int *spi_device = NULL;
 	int dev;
 	int a=0, b=0;
 	int i;
+
+	debugfd = open("/dev/null", O_WRONLY);
 
 	/* check input variables */
 	CHECK_NULL(spi_target_ptr); /* cannot be null, must point on a void pointer (*spi_target_ptr can be null) */
@@ -191,6 +195,7 @@ int lgw_spi_w(void *spi_target, uint8_t address, uint8_t data) {
 		DEBUG_MSG("ERROR: SPI WRITE FAILURE\n");
 		return LGW_SPI_ERROR;
 	} else {
+		write(debugfd, out_buf, 2);
 		DEBUG_MSG("Note: SPI write success\n");
 		return LGW_SPI_SUCCESS;
 	}
@@ -232,6 +237,7 @@ int lgw_spi_r(void *spi_target, uint8_t address, uint8_t *data) {
 		DEBUG_MSG("ERROR: SPI READ FAILURE\n");
 		return LGW_SPI_ERROR;
 	} else {
+		write(debugfd, in_buf, 2);
 		DEBUG_MSG("Note: SPI read success\n");
 		*data = in_buf[1];
 		return LGW_SPI_SUCCESS;
@@ -287,6 +293,8 @@ int lgw_spi_wb(void *spi_target, uint8_t address, uint8_t *data, uint16_t size) 
 		DEBUG_MSG("ERROR: SPI BURST WRITE FAILURE\n");
 		return LGW_SPI_ERROR;
 	} else {
+		write(debugfd, &command, 1);
+		write(debugfd, data, size);
 		DEBUG_MSG("Note: SPI burst write success\n");
 		return LGW_SPI_SUCCESS;
 	}
@@ -341,6 +349,8 @@ int lgw_spi_rb(void *spi_target, uint8_t address, uint8_t *data, uint16_t size) 
 		DEBUG_MSG("ERROR: SPI BURST READ FAILURE\n");
 		return LGW_SPI_ERROR;
 	} else {
+		write(debugfd, &command, 1);
+		write(debugfd, data, size);
 		DEBUG_MSG("Note: SPI burst read success\n");
 		return LGW_SPI_SUCCESS;
 	}
