@@ -5,8 +5,6 @@ APP_NAME := poly_pkt_fwd
 ### Environment constants 
 
 LGW_PATH ?= ../libloragw
-ARCH ?=
-CROSS_COMPILE ?=
 
 ### External constant definitions
 # must get library build option to know if mpsse must be linked or not
@@ -15,9 +13,6 @@ include $(LGW_PATH)/library.cfg
 RELEASE_VERSION := $(shell cat ../VERSION)
 
 ### Constant symbols
-
-CC := $(CROSS_COMPILE)gcc
-AR := $(CROSS_COMPILE)ar
 
 CFLAGS := -O2 -Wall -Wextra -std=c99 -Iinc -I.
 VFLAG := -D VERSION_STRING="\"$(RELEASE_VERSION)\""

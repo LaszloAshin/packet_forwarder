@@ -1,8 +1,6 @@
 ### Environment constants 
 
 LGW_PATH ?= ../libloragw
-ARCH ?=
-CROSS_COMPILE ?=
 export
 
 ### general build targets

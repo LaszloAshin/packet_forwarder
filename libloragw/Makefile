@@ -3,14 +3,6 @@
 LIBLORAGW_VERSION := `cat ../VERSION`
 include library.cfg
 
-### constant symbols
-
-ARCH ?=
-CROSS_COMPILE ?=
-CC := $(CROSS_COMPILE)gcc
-AR := $(CROSS_COMPILE)ar
-
-
 ### library.cfg configuration file processing
 
 ifeq ($(CFG_SPI),native)
