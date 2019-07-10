@@ -7,7 +7,10 @@ jobs:
     steps:
     - checkout
     - run:
+        name: Configure
+        command: cmake -Bbuild -H. -GNinja
+    - run:
         name: Build
-        command: make
+        command: ninja -Cbuild
     - store_artifacts:
-        path: poly_pkt_fwd/poly_pkt_fwd
+        path: build/poly_pkt_fwd/poly_pkt_fwd
