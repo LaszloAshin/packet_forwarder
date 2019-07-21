@@ -14,5 +14,4 @@ target_include_directories(poly_pkt_fwd
 target_link_libraries(poly_pkt_fwd
 	loragw
 	pthread
-	-static
 )
